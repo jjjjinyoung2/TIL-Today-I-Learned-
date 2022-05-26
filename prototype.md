@@ -109,3 +109,106 @@ div.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__; // nu
 • 모든 프로토타입 체이닝의 종점은 Object.prototype이다.
 
 • 해당 객체에 없는 프로퍼티나 메소드를 접근할 때 프로토타입 체이닝이 일어난다.
+
+## **Beesbeesbees과제 진행**
+
+### **constructor**
+
+**클래스의 인스턴스 객체를 생성하고 초기화하는 메서드.**
+
+**클래스에 생성자를 정의하지 않으면 기본 생성자를 사용한다. 아무것도 상속하지 않는 기본 클래스일 때의 기본생성자는 빈 메서드.**
+
+<aside>
+💡 구문
+constructor() { ... }
+constructor(argument0) { ... }
+constructor(argument0, argument1) { ... }
+constructor(argument0, argument1, ... , argumentN) { ... }
+
+</aside>
+
+```jsx
+class Grub {
+  // TODO..
+  //Grub는 모든 모든 Bee의 기반이 된다.
+  //constructor메서드는 클래스의 인스턴스 객체를 생성하고 초기화한다.
+  constructor() {
+    this.age = 0; //`age` 속성은 `0`이어야 합니다'
+    this.color = "pink";
+    this.food = "jelly";
+  }
+  eat() {
+    return `Mmmmmmmmm ${this.food}`;
+  }
+}
+
+module.exports = Grub;
+```
+
+### **extends**
+
+**클래스를 다른 클래스의 자식으로 만들기 위해 class선언 또는 class식에 사용된다.**
+
+<aside>
+💡 구문
+class ChildClass extends ParentClass { ... }
+
+</aside>
+
+```jsx
+const Bee = require("./Bee");
+
+class HoneyMakerBee extends Bee {
+  // TODO..
+  constructor() {
+    super();
+    this.age = 10; //`age` 속성은 `10`이어야 합니다'
+    this.job = "make honey"; //`job` 속성은 `make honey`이어야 합니다
+    this.honeyPot = 0; //`honeyPot` 속성은 `0`이어야 합니다'
+  }
+  makeHoney() {
+    this.honeyPot += 1; //`makeHoney` 메소드는 `honeyPot`에 1씩 추가합니다'
+  }
+  giveHoney() {
+    this.honeyPot -= 1; //`giveHoney` 메소드는 `honeyPot`에 1씩 뺍니다'
+  }
+}
+
+module.exports = HoneyMakerBee;
+```
+
+### **super**
+
+**부모 오브젝트의 함수를 호출할 때 사용된다.**
+
+**생성자에서는 super 키워드 하나만 사용되거나 this 키워드가 사용되기 전에 호출되어야 한다.**
+
+**또한  super 키워드는 부모 객체의 함수를 호출하는데 사용 될 수 있다.**
+
+<aside>
+💡 구문
+
+super([arguments]); // 부모 생성자 호출
+super.functionOnParent([arguments]);
+
+</aside>
+
+```jsx
+const Bee = require("./Bee");
+
+class ForagerBee extends Bee {
+  // TODO..
+  constructor() {
+    super();
+    this.age = 10; //`age` 속성은 `10`이어야 합니다'
+    this.job = "find pollen"; //`job` 속성은 `find pollen`이어야 합니다'
+    this.canFly = true; //`canFly` 속성은 `true`이어야 합니다'
+    this.treasureChest = []; //`treasureChest` 속성은 빈 배열 `[]`이어야 합니다'
+  }
+  forage(el) {
+    this.treasureChest.push(el); //`forage` 메소드를 통해 `treasureChest` 속성에 보물을 추가할 수 있어야 합니다'
+  }
+}
+
+module.exports = ForagerBee;
+```
