@@ -1,0 +1,12 @@
+.add-todo-button {
+  /* todo목록이길어지면스크롤생기는데 + 고정 */
+  position: fixed;
+  right: -5px;
+  bottom: 0;
+  z-index: 100;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  font-size: 5rem;
+  color: #f67280;
+}
