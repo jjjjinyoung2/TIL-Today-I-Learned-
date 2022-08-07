@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <!-- <h2 id="hello">안녕하세요</h2>
+    <h2 id="hi">올때메로나</h2> -->
+    <div class="alert-box" id="alert">
+      <p id="title">Alert박스</p>
+      <button id="close">X</button>
+    </div>
+
+    <!-- UI만드는법
+    미리 디자인해놓고 숨김 display: none;
+    버튼 누르거나 하면 보여줌 -->
+    <!-- 이버튼누르면 자바스크립트 실행시켜줘~ -->
+    <button onclick="알림창1열기('아이디입력해라')">버튼1</button>
+    <button onclick="알림창1열기('비밀번호입력해라')">버튼2</button>
+
+    <script>
+      document.getElementById("close").addEventListener("click", function () {
+        document.getElementById("alert").style.display = "none";
+      });
+      //document.getElementById("hello").innerHTML = "안녕";
+      //웹문서 ~의 id hello인 html요소 가져와  내부글자는 안녕
+      //document.getElementById("hi").innerHTML = "올때바밤바";
+      // =셀렉터 selector
+      // Q. 글자사이즈를 30px로 변경하려면?
+      //document.getElementById("hello").style.fontSize = "30px";
+      // function 알림창열기(구멍){
+      //   // function 쓰는 이유
+      //   //1. 긴 코드를 깔끔하게 한 단어로 축약가능
+      //   //2. 함수 업그레이드 하고 싶으면 파라미터
+      //   document.getElementById('alert').style.display = 구멍;
+      // }
+      function 알림창1열기(구멍) {
+        //1. 제목바꾸기
+        document.getElementById("title").innerHTML = 구멍;
+        //2. 열기
+        document.getElementById("alert").style.display = "block";
+      }
+      // function 알림창2열기() {
+      //   //1. 제목바꾸기
+      //   document.getElementById("title").innerHTML = "비밀번호입력하세요";
+      //   //2. 열기
+      //   document.getElementById("alert").style.display = "block";
+      // }
+      // function 알림창열기(구멍) {
+      //   document.getElementById("alert").style.display = 구멍;
+      // }
+    </script>
+  </body>
+</html>

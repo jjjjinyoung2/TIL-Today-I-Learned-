@@ -1,0 +1,16 @@
+.alert-box {
+  background: rgb(185, 185, 241);
+  color: rgb(23, 23, 214);
+  padding: 20px;
+  border-radius: 5px;
+  /* 숨겨놓을꺼야 display: none; */
+  display: none;
+}
+.alert-box2 {
+  background: rgb(185, 185, 241);
+  color: rgb(23, 23, 214);
+  padding: 20px;
+  border-radius: 5px;
+  /* 숨겨놓을꺼야 display: none; */
+  display: none;
+}
