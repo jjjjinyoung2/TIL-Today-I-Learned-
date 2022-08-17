@@ -23,7 +23,7 @@
 /* 가져온아이콘 */
 .content svg {
   font-size: 1.5rem;
-  color: #f67280;
+  color: hsl(354, 88%, 71%);
 }
 
 .content .text {

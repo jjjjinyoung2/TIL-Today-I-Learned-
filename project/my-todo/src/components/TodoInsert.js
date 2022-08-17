@@ -22,7 +22,11 @@ const TodoInsert = ({
     setValue("");
     onInsertToggle();
   };
-
+  // Update 기능을 구현하기 위해 use effect 사용해서 todo item컴포넌트를 클릭했을때
+  //해당 todo객체의 text 내용이 input에 뜨도록 use effect를 사용,
+  //텍스트를 변경해주는 onupdate함수로 map을 이용해
+  //각 todo의 id가 인자로 받은 id와 맞을 경우 기존 id와 checked 정보는 유지하고
+  //text만 업데이트해주는 수정 기능을 가진 컴포넌트를 구현
   useEffect(() => {
     if (selectedTodo) {
       setValue(selectedTodo.text);

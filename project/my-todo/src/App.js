@@ -13,18 +13,18 @@ const App = () => {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: "할일 1",
-      checked: true,
+      text: "옷",
+      checked: false,
     },
     {
       id: 2,
-      text: "할일 2",
+      text: "충전기",
       checked: false,
     },
     {
       id: 3,
-      text: "할일 3",
-      checked: true,
+      text: "모자",
+      checked: false,
     },
   ]);
 
