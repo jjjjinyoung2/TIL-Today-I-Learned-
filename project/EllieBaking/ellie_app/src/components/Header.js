@@ -1,4 +1,5 @@
-import React from "react";
+import { React } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBreadSlice, faBars } from "@fortawesome/free-solid-svg-icons";
@@ -42,6 +43,12 @@ const HeaderStyled = styled.div`
   .navbar_icons li {
     padding: 8px 12px;
   }
+  .navbar_toggleBtn {
+    display: none;
+    position: absolute;
+    right: 32px;
+    font-size: 24px;
+  }
   //반응형
   @media screen and (max-width: 768px) {
     .navbar {
@@ -50,6 +57,7 @@ const HeaderStyled = styled.div`
       padding: 8px 24px;
     }
     .navbar_menu {
+      /* display: none; */
       flex-direction: column; //방향 세로로
       align-items: center;
       width: 100%;
@@ -59,49 +67,72 @@ const HeaderStyled = styled.div`
       text-align: center;
     }
     .navbar_icons {
+      /* display: none; */
       justify-content: center;
       width: 100%;
+    }
+    .navbar_toggleBtn {
+      display: block;
     }
   }
 `;
 
 const Header = () => {
+  // const [navbar_ToggleBtn, setNavbar_ToggleBtn] = useState(false);
+
+  // const toggleBtn = document.querySelector(".navbar_toggleBtn");
+  // const menu = document.querySelector(".navbar_menu");
+  // const icons = document.querySelector(".navbar_icons");
+  // toggleBtn.addEventListener("click", () => {
+  //   menu.classList.toggle("active");
+  //   icons.classList.toggle("active");
+  // });
   return (
     <HeaderStyled>
       <nav className="navbar">
         <div className="navbar_logo">
           <FontAwesomeIcon icon={faBreadSlice} />
-          <a href=""> Ellie's Baking</a>
+          <Link to="/">
+            <span> Ellie's Baking</span>
+          </Link>
         </div>
         <ul className="navbar_menu">
           <li>
-            <a href="">Home</a>
+            <Link to="/">
+              <a>Home</a>
+            </Link>
           </li>
           <li>
-            <a href="">Gallery</a>
+            <Link to="/Gallery">Gallery</Link>
           </li>
           <li>
-            <a href="">Bookings</a>
+            <Link to="/Bookings">Bookings</Link>
           </li>
           <li>
-            <a href="">FAQ</a>
+            <Link to="/FAQ">FAQ</Link>
           </li>
         </ul>
         <ul className="navbar_icons">
           <li>
-            <a href="">
+            <a href="https://www.instagram.com/ellie__baking/">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="https://pf.kakao.com/_QxoxoExj">
               <FontAwesomeIcon icon={faComment} />
             </a>
           </li>
         </ul>
-        <a href="" className="navbar_toggleBtn">
+        <Link
+          to="#"
+          className="navbar_toggleBtn"
+          // onClick={() => {
+          //   setNavbar_ToggleBtn(!navbar_ToggleBtn);
+          // }}
+        >
           <FontAwesomeIcon icon={faBars} />
-        </a>
+        </Link>
       </nav>
     </HeaderStyled>
   );
