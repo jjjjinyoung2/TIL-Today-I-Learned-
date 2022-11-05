@@ -1,0 +1,2 @@
+CSS 박스 모델에 대해서 설명하세요.
+css box model은 HTML 요소들을 감싸는 상자라고 할 수 있으며 marign, border, padding, content로 구성됩니다. content는 내용, padding은 content와 border 사이의 여백, border는 padding과 콘텐츠를 둘러싸는 테두리, 마지막으로 margin은 테두리 밖의 여백으로 요소 사이의 간격을 의미합니다.
