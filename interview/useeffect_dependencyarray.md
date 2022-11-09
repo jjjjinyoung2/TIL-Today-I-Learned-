@@ -1,0 +1,2 @@
+useEffect의 dependency array에 대해서 설명해주세요.
+useEffect 는 dependency array의 요소에 해당하는 상태가 변경될때마다 실행됩니다. 예를들어 dependency array가 inputValue라는 상태를 요소로 가지고 있다고 할때, setInputValue를 통해 inputValue 가 변경될때마다 useEffect 내부에 있는 함수를 실행시켜줍니다. dependency array가 비어있는 경우는 해당 컴포넌트 첫 렌더링 시에만 실행되고, dependency array가 아예 없는 경우는 모든 상태가 변경될 때, 렌더링 될 때마다 실행됩니다. 
