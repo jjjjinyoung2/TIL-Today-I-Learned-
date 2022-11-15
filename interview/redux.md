@@ -1,0 +1,2 @@
+Redux의 주요 개념들과 연결 관계를 설명해주세요.
+Redux에선 Action → Dispatch → Reducer → Store 순서로 데이터가 흐르게 되는데 즉, 상태 변경 이벤트가 발생하면 변경될 상태 정보가 담긴 Action 객체가 생성이 되고, 이를 Dispatch 함수 인자로 전달합니다. 그 다음 Dispatch 함수가 Action 객체를 Reducer 함수로 전달하게 되면 Reducer 함수는 값에 따라 전역 상태 저장소인 Store 상태를 변경하여 화면을 리렌더링하게 됩니다.
