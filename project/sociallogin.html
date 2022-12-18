@@ -7,10 +7,30 @@
     <title>socialLogin</title>
   </head>
   <body>
+    <button id="googleLogin">구글 아이디로 로그인</button>
+
+    <form>
+      핸드폰번호 : <input id="phoneNumber" /><button id="phoneNumberButton">
+        핸드폰 번호 전송
+      </button>
+    </form>
+    <form>
+      확인코드 : <input id="confirmCode" /><button id="confirmCodeButton">
+        확인코드 전송
+      </button>
+    </form>
+
     <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+      import {
+        getAuth,
+        signInWithPopup,
+        GoogleAuthProvider,
+        signInWithPhoneNumber,
+        RecaptchaVerifier,
+      } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,6 +49,90 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth();
+
+      auth.languageCode = "ko";
+
+      //구글소셜로그인
+      document.getElementById("googleLogin").addEventListener("click", () => {
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            console.log(result);
+            // ...
+          })
+          .catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            console.log(error);
+            // ...
+          });
+      });
+      //보이지 않는 reCAPTCHA를 사용
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        "phoneNumberButton",
+        {
+          size: "invisible",
+          callback: (response) => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+            onSignInSubmit();
+          },
+        },
+        auth
+      );
+
+      document
+        .getElementById("phoneNumberButton")
+        .addEventListener("click", (event) => {
+          event.preventDefault();
+          //사용자의 전화로 인증 코드 보내기
+          const phoneNumber = document.getElementById("phoneNumber").value;
+          const appVerifier = window.recaptchaVerifier;
+
+          signInWithPhoneNumber(auth, "+82" + phoneNumber, appVerifier)
+            .then((confirmationResult) => {
+              // SMS sent. Prompt user to type the code from the message, then sign the
+              // user in with confirmationResult.confirm(code).
+              window.confirmationResult = confirmationResult;
+              console.log(confirmationResult);
+              // ...
+            })
+            .catch((error) => {
+              console.log(error);
+              // Error; SMS not sent
+              // ...
+            });
+        });
+      //confirmCodeButton 버튼눌렀을때 input 값을 가져와 확인해주는 코드
+      document
+        .getElementById("confirmCodeButton")
+        .addEventListener("click", (event) => {
+          event.preventDefault();
+          const code = document.getElementById("confirmCode").value;
+          confirmationResult
+            .confirm(code)
+            .then((result) => {
+              // User signed in successfully.
+              const user = result.user;
+              console.log(result);
+              // ...
+            })
+            .catch((error) => {
+              console.log(error);
+              // User couldn't sign in (bad verification code?)
+              // ...
+            });
+        });
     </script>
   </body>
 </html>
